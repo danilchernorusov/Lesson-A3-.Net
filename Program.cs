@@ -28,7 +28,7 @@ namespace Program
             Console.WriteLine();
         }
 
-        public static void dijkstra(int start)
+        public static int[] dijkstra(int start)
         {
             const int n = 6;
 
@@ -85,16 +85,27 @@ namespace Program
                 Console.WriteLine($" <= {start + 1}");
             }
             Console.WriteLine();
+
+            return dist;
         }
 
-        public static void FloydWarshall()
+        public static int[,] FloydWarshall()
         {
+            int[,] dists = new int[6, 6];
             for (int i = 0; i < 6; i++)
             {
-                dijkstra(i);
+                int[] dist = dijkstra(i);
+
+                for (int j = 0; j < 6; j++)
+                {
+                    dists[i, j] = dist[j];
+                }
             }
+
+            return dists;
         }
     }
+
     class Program
     {
         public static void Main()
